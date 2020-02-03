@@ -1,3 +1,3 @@
 # raytracing
 
-Inspired by [Computer Graphics from scratch @gabrielgambetta](https://www.gabrielgambetta.com/computer-graphics-from-scratch/introduction.html)
+Inspired by [Computer Graphics from scratch @ggambetta](https://www.gabrielgambetta.com/computer-graphics-from-scratch/introduction.html)
