@@ -45,7 +45,7 @@ namespace Raytracing {
    ColorR = color[0];
    ColorG = color[1];
    ColorB = color[2];
-   Color = $ "{color[0]} {color[1]} {color[2]}";
+   Color = $"{color[0]} {color[1]} {color[2]}";
    Spec = spec;
   }
   public double X {
@@ -241,7 +241,7 @@ namespace Raytracing {
    double ch = cv.CH;
 
    StringBuilder ppm = new StringBuilder();
-   ppm.AppendLine($ "P3\n{cw} {ch}\n255");
+   ppm.AppendLine($"P3\n{cw} {ch}\n255");
    StringBuilder sb = new StringBuilder();
 
    Vec3 origin = new Vec3(0, 0, 0);
