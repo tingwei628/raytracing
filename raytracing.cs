@@ -45,7 +45,6 @@ namespace Raytracing {
    ColorR = color[0];
    ColorG = color[1];
    ColorB = color[2];
-   Color = $"{color[0]} {color[1]} {color[2]}";
    Spec = spec;
   }
   public double X {
@@ -67,8 +66,10 @@ namespace Raytracing {
   //public int R_2 => X*X + Y*Y+Z*Z;
 
   public string Color {
-   get;
-   set;
+   get {
+     return  $"{ColorR} {ColorG} {ColorB}";
+   }
+   
   }
   public double ColorR {
    get;
