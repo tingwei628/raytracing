@@ -83,6 +83,14 @@ namespace Raytracing {
    get;
    set;
   }
+  public double T1 {
+   get;
+   set;
+  }
+  public double T2 {
+   get;
+   set;
+  }
   public double Spec {
    get;
    set;
@@ -143,13 +151,14 @@ namespace Raytracing {
 
  }
  public static class Util {
+  public static Sphere Copy(this Sphere sphere) { return new Sphere(sphere.X, sphere.Y, sphere.Z, sphere.R, new double[] { sphere.ColorR, sphere.ColorG, sphere.ColorB }, sphere.Spec); }
   public static double dot(Vec3 self, Vec3 a) => (self.V[0] * a.V[0] + self.V[1] * a.V[1] + self.V[2] * a.V[2]);
   public static Vec3 unit(Vec3 self) => self / self.Length;
 
   public static double[] Interfere(Vec3 origin, Vec3 D, Sphere sphere) {
    double[] t1_t2 = new double[2];
    //  C = sphere.center
-      Console.WriteLine("sphere closed_sphere.Color {0}", sphere.Color);
+    //Console.WriteLine("sphere closed_sphere.Color {0}", sphere.Color);
    Vec3 c = new Vec3(sphere.X, sphere.Y, sphere.Z);
    // r = sphere.radius
    double r = sphere.R;
@@ -172,25 +181,20 @@ namespace Raytracing {
   public static string TraceRay(Vec3 origin, Vec3 light, double t_min, double t_max, List < Sphere > spheres, List < Light > lights) {
    double closed_t = Double.MaxValue;
    Sphere closed_sphere = null;
-   double closed_sphere_ColorR = 0;
-   double closed_sphere_ColorG = 0;
-   double closed_sphere_ColorB = 0;
-   double closed_sphere_t1 = Double.MaxValue;
-   double closed_sphere_t2 = Double.MaxValue;
    double[] t1_t2 = new double[2];
    foreach(var sphere in spheres) {
     t1_t2 = Interfere(origin, light, sphere);
     // t1
-     Console.WriteLine("t1_t2 {0} {1}", t1_t2[0], t1_t2[1]);
-     Console.WriteLine("before sphere.Color {0}", sphere.Color);
+    //Console.WriteLine("t1_t2 {0} {1}", t1_t2[0], t1_t2[1]);
+    //Console.WriteLine("before sphere.Color {0}", sphere.Color);
     if (t_min <= t1_t2[0] && t1_t2[0] < t_max && t1_t2[0] < closed_t) {
-     closed_sphere = sphere;
+     closed_sphere = sphere.Copy();
      closed_t = t1_t2[0];
      closed_sphere.T1 = closed_t;
     }
     // t2
     if (t_min <= t1_t2[1] && t1_t2[1] < t_max && t1_t2[1] < closed_t) {
-     closed_sphere = sphere;
+     closed_sphere = sphere.Copy();
      closed_t = t1_t2[1];
      closed_sphere.T2 = closed_t;
     }
@@ -201,14 +205,14 @@ namespace Raytracing {
    Vec3 P = origin + light * closest_t;
    Vec3 N1 = P - new Vec3(closed_sphere.X, closed_sphere.Y, closed_sphere.Z);
    Vec3 N = Util.unit(N1);
-   Console.WriteLine("before closed_sphere.Color {0}", closed_sphere.Color);
+   //Console.WriteLine("before closed_sphere.Color {0}", closed_sphere.Color);
    double intensity = Util.ComputeLight(P, N, lights, light * -1, closed_sphere.Spec);
    
    closed_sphere.ColorR = Math.Ceiling(closed_sphere.ColorR * intensity);
    closed_sphere.ColorG = Math.Ceiling(closed_sphere.ColorG * intensity);
    closed_sphere.ColorB = Math.Ceiling(closed_sphere.ColorB * intensity);
-      Console.WriteLine("=> {0} {1} {2}",  light.V[0],  light.V[1], light.V[2]);
-   Console.WriteLine("closed_sphere.Color {0}", closed_sphere.Color);
+    //Console.WriteLine("=> {0} {1} {2}",  light.V[0],  light.V[1], light.V[2]);
+   //Console.WriteLine("closed_sphere.Color {0}", closed_sphere.Color);
    return closed_sphere.Color;
   }
 
