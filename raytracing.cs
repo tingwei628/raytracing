@@ -28,6 +28,7 @@ namespace Raytracing {
   }
   public static Vec3 operator + (Vec3 self, Vec3 a) => new Vec3(self.V[0] + a.V[0], self.V[1] + a.V[1], self.V[2] + a.V[2]);
   public static Vec3 operator - (Vec3 self, Vec3 a) => new Vec3(self.V[0] - a.V[0], self.V[1] - a.V[1], self.V[2] - a.V[2]);
+  
 
   public static Vec3 operator * (Vec3 self, double a) => new Vec3(self.V[0] * a, self.V[1] * a, self.V[2] * a);
   public static Vec3 operator / (Vec3 self, double a) => new Vec3(self.V[0] * 1 / a, self.V[1] * 1 / a, self.V[2] * 1 / a);
@@ -212,7 +213,7 @@ namespace Raytracing {
    closed_sphere.ColorG = Math.Ceiling(closed_sphere.ColorG * intensity);
    closed_sphere.ColorB = Math.Ceiling(closed_sphere.ColorB * intensity);
     //Console.WriteLine("=> {0} {1} {2}",  light.V[0],  light.V[1], light.V[2]);
-   //Console.WriteLine("closed_sphere.Color {0}", closed_sphere.Color);
+   Console.WriteLine("closed_sphere.Color {0}", closed_sphere.Color);
    return closed_sphere.Color;
   }
 
@@ -243,7 +244,7 @@ namespace Raytracing {
  public static class MainClass {
   public static void Main(string[] args) {
    ViewPort vp = new ViewPort(1, 1);
-   Canvas cv = new Canvas(50, 50, vp);
+   Canvas cv = new Canvas(100, 100, vp);
    double cw = cv.CW;
    double ch = cv.CH;
 
