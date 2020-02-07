@@ -213,7 +213,7 @@ namespace Raytracing {
    closed_sphere.ColorG = Math.Ceiling(closed_sphere.ColorG * intensity);
    closed_sphere.ColorB = Math.Ceiling(closed_sphere.ColorB * intensity);
     //Console.WriteLine("=> {0} {1} {2}",  light.V[0],  light.V[1], light.V[2]);
-   Console.WriteLine("closed_sphere.Color {0}", closed_sphere.Color);
+   //Console.WriteLine("closed_sphere.Color {0}", closed_sphere.Color);
    return closed_sphere.Color;
   }
 
@@ -244,7 +244,7 @@ namespace Raytracing {
  public static class MainClass {
   public static void Main(string[] args) {
    ViewPort vp = new ViewPort(1, 1);
-   Canvas cv = new Canvas(100, 100, vp);
+   Canvas cv = new Canvas(100, 150, vp);
    double cw = cv.CW;
    double ch = cv.CH;
 
@@ -273,8 +273,8 @@ namespace Raytracing {
    }, 10);
    List < Sphere > spheres = new List < Sphere > {
     sh1,
-    sh2,
-    sh3
+    //sh2,
+    //sh3
    };
 
    Light light1 = new Light("ambient", 0.2);
