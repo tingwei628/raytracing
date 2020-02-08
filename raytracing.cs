@@ -87,11 +87,11 @@ namespace Raytracing {
   public double T1 {
    get;
    set;
-  }
+  } = Double.MaxValue;
   public double T2 {
    get;
    set;
-  }
+  } = Double.MaxValue;
   public double Spec {
    get;
    set;
@@ -244,7 +244,7 @@ namespace Raytracing {
  public static class MainClass {
   public static void Main(string[] args) {
    ViewPort vp = new ViewPort(1, 1);
-   Canvas cv = new Canvas(100, 150, vp);
+   Canvas cv = new Canvas(250, 250, vp);
    double cw = cv.CW;
    double ch = cv.CH;
 
@@ -254,11 +254,14 @@ namespace Raytracing {
 
    Vec3 origin = new Vec3(0, 0, 0);
    // red
+
+
    Sphere sh1 = new Sphere(0, -1, 3, 1, new double[] {
     255,
     0,
     0
    }, 500);
+
    // blue
    Sphere sh2 = new Sphere(2, 0, 4, 1, new double[] {
     0,
@@ -273,8 +276,8 @@ namespace Raytracing {
    }, 10);
    List < Sphere > spheres = new List < Sphere > {
     sh1,
-    //sh2,
-    //sh3
+    sh2,
+    sh3
    };
 
    Light light1 = new Light("ambient", 0.2);
