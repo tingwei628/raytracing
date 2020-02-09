@@ -150,6 +150,8 @@ namespace Raytracing {
   }
   public Vec3 CanvasToViewPort(double cx, double cy, double cz = -1.0) => new Vec3(VP.VW * (cx-0.0) * 1 / CW, VP.VH * (cy-0.0) * 1 / CH, cz);
 
+ //public Vec3 CanvasToViewPort(double cx, double cy, double cz = -1.0) => new Vec3(0.0, 0.0, cz);
+ 
  }
  public static class Util {
   public static Sphere Copy(this Sphere sphere) { return new Sphere(sphere.X, sphere.Y, sphere.Z, sphere.R, new double[] { sphere.ColorR, sphere.ColorG, sphere.ColorB }, sphere.Spec); }
@@ -249,8 +251,8 @@ namespace Raytracing {
   double result = Math.Tan(radians);
   double vw = 2.0 * result;
   double vh = 2.0 * result;
-   ViewPort vp = new ViewPort(vw, vh);
-   Canvas cv = new Canvas(50, 50, vp);
+   ViewPort vp = new ViewPort(1, 1);
+   Canvas cv = new Canvas(100, 100, vp);
    double cw = cv.CW;
    double ch = cv.CH;
 
@@ -262,7 +264,7 @@ namespace Raytracing {
    // red
 
 
-   Sphere sh1 = new Sphere(0, -0, -3, 1, new double[] {
+   Sphere sh1 = new Sphere(0, 0, -3, 1, new double[] {
     255,
     0,
     0
@@ -294,11 +296,11 @@ namespace Raytracing {
     light2,
     light3
    };
-   double start_y = -ch / 2.0;
-   double end_y = ch / 2.0;
+   double start_y = ch / 2.0;
+   double end_y = -ch / 2.0;
    double start_x = -cw / 2.0;
    double end_x = cw / 2.0;
-   for (double y = start_y; y <= end_y; y = y + 1) {
+   for (double y = start_y; y >= end_y; y = y - 1) {
     for (double x = start_x; x <= end_x; x = x + 1) {
      
      Vec3 D = cv.CanvasToViewPort(x, y);
