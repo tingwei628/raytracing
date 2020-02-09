@@ -148,7 +148,7 @@ namespace Raytracing {
    CH = ch;
    VP = vp;
   }
-  public Vec3 CanvasToViewPort(double cx, double cy, double cz = -1.0) => new Vec3(VP.VW * cx * 1 / CW, VP.VH * cy * 1 / CH, cz);
+  public Vec3 CanvasToViewPort(double cx, double cy, double cz = -1.0) => new Vec3(VP.VW * (cx-0.0) * 1 / CW, VP.VH * (cy-0.0) * 1 / CH, cz);
 
  }
  public static class Util {
@@ -243,8 +243,14 @@ namespace Raytracing {
  }
  public static class MainClass {
   public static void Main(string[] args) {
-   ViewPort vp = new ViewPort(1, 1);
-   Canvas cv = new Canvas(100, 100, vp);
+
+  double angle = 90.0/2.0;
+  double radians = angle * (Math.PI/180);
+  double result = Math.Tan(radians);
+  double vw = 2.0 * result;
+  double vh = 2.0 * result;
+   ViewPort vp = new ViewPort(vw, vh);
+   Canvas cv = new Canvas(50, 50, vp);
    double cw = cv.CW;
    double ch = cv.CH;
 
@@ -256,7 +262,7 @@ namespace Raytracing {
    // red
 
 
-   Sphere sh1 = new Sphere(0, -1, -3, 1, new double[] {
+   Sphere sh1 = new Sphere(0, -0, -3, 1, new double[] {
     255,
     0,
     0
