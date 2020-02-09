@@ -166,26 +166,6 @@ namespace Raytracing {
    // r = sphere.radius
    double r = sphere.R;
    // OC = O - C
-
-/*
-
-    C = sphere.center
-    r = sphere.radius
-    oc = O - C
-
-    k1 = dot(D, D)
-    k2 = 2*dot(OC, D)
-    k3 = dot(OC, OC) - r*r
-
-    discriminant = k2*k2 - 4*k1*k3
-    if discriminant < 0:
-        return inf, inf
-
-    t1 = (-k2 + sqrt(discriminant)) / (2*k1)
-    t2 = (-k2 - sqrt(discriminant)) / (2*k1)
-    return t1, t2
-*/
-
    Vec3 OC =  origin - c;
    double k1 = dot(D, D);
    double k2 = 2 * dot(OC, D);
@@ -236,6 +216,7 @@ namespace Raytracing {
    closed_sphere.ColorB = Math.Ceiling(closed_sphere.ColorB * intensity);
     //Console.WriteLine("=> {0} {1} {2}",  light.V[0],  light.V[1], light.V[2]);
    //Console.WriteLine("closed_sphere.Color {0}", closed_sphere.Color);
+
    return closed_sphere.Color;
   }
 
@@ -320,8 +301,8 @@ namespace Raytracing {
    double end_y = -ch / 2.0;
    double start_x = -cw / 2.0;
    double end_x = cw / 2.0;
-   for (double y = start_y; y >= end_y; y = y - 1) {
-    for (double x = start_x; x <= end_x; x = x + 1) {
+   for (double y = start_y; y > end_y; y = y - 1) {
+    for (double x = start_x; x < end_x; x = x + 1) {
      
      Vec3 D = cv.CanvasToViewPort(x, y);
      //Console.WriteLine("{0} {1} {2}", D.V[0], D.V[1], D.V[2]);
