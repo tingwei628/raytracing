@@ -246,14 +246,8 @@ namespace Raytracing {
  }
  public static class MainClass {
   public static void Main(string[] args) {
-
-  double angle = 90.0/2.0;
-  double radians = angle * (Math.PI/180);
-  double result = Math.Tan(radians);
-  double vw = 2.0 * result;
-  double vh = 2.0 * result;
    ViewPort vp = new ViewPort(1, 1);
-   Canvas cv = new Canvas(100, 100, vp);
+   Canvas cv = new Canvas(200, 200, vp);
    double cw = cv.CW;
    double ch = cv.CH;
 
@@ -265,7 +259,7 @@ namespace Raytracing {
    // red
 
 
-   Sphere sh1 = new Sphere(0, 0, -3, 1, new double[] {
+   Sphere sh1 = new Sphere(0, -1, -3, 1, new double[] {
     255,
     0,
     0
@@ -285,8 +279,8 @@ namespace Raytracing {
    }, 10);
    List < Sphere > spheres = new List < Sphere > {
     sh1,
-    //sh2,
-    //sh3
+    sh2,
+    sh3
    };
 
    Light light1 = new Light("ambient", 0.2);
