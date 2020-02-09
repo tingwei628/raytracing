@@ -166,6 +166,26 @@ namespace Raytracing {
    // r = sphere.radius
    double r = sphere.R;
    // OC = O - C
+
+/*
+
+    C = sphere.center
+    r = sphere.radius
+    oc = O - C
+
+    k1 = dot(D, D)
+    k2 = 2*dot(OC, D)
+    k3 = dot(OC, OC) - r*r
+
+    discriminant = k2*k2 - 4*k1*k3
+    if discriminant < 0:
+        return inf, inf
+
+    t1 = (-k2 + sqrt(discriminant)) / (2*k1)
+    t2 = (-k2 - sqrt(discriminant)) / (2*k1)
+    return t1, t2
+*/
+
    Vec3 OC =  origin - c;
    double k1 = dot(D, D);
    double k2 = 2 * dot(OC, D);
@@ -193,13 +213,13 @@ namespace Raytracing {
     if (t_min <= t1_t2[0] && t1_t2[0] < t_max && t1_t2[0] < closed_t) {
      closed_sphere = sphere.Copy();
      closed_t = t1_t2[0];
-     closed_sphere.T1 = closed_t;
+     closed_sphere.T1 = t1_t2[0];
     }
     // t2
     if (t_min <= t1_t2[1] && t1_t2[1] < t_max && t1_t2[1] < closed_t) {
      closed_sphere = sphere.Copy();
      closed_t = t1_t2[1];
-     closed_sphere.T2 = closed_t;
+     closed_sphere.T2 =  t1_t2[1];
     }
    }
    if (closed_sphere == null) return "255 255 255";
