@@ -148,7 +148,7 @@ namespace Raytracing {
    CH = ch;
    VP = vp;
   }
-  public Vec3 CanvasToViewPort(double cx, double cy, double cz = 1.0) => new Vec3(VP.VW * cx * 1 / CW, VP.VH * cy * 1 / CH, cz);
+  public Vec3 CanvasToViewPort(double cx, double cy, double cz = -1.0) => new Vec3(VP.VW * cx * 1 / CW, VP.VH * cy * 1 / CH, cz);
 
  }
  public static class Util {
@@ -244,7 +244,7 @@ namespace Raytracing {
  public static class MainClass {
   public static void Main(string[] args) {
    ViewPort vp = new ViewPort(1, 1);
-   Canvas cv = new Canvas(250, 250, vp);
+   Canvas cv = new Canvas(100, 100, vp);
    double cw = cv.CW;
    double ch = cv.CH;
 
@@ -256,33 +256,33 @@ namespace Raytracing {
    // red
 
 
-   Sphere sh1 = new Sphere(0, -1, 3, 1, new double[] {
+   Sphere sh1 = new Sphere(0, -1, -3, 1, new double[] {
     255,
     0,
     0
    }, 500);
 
    // blue
-   Sphere sh2 = new Sphere(2, 0, 4, 1, new double[] {
+   Sphere sh2 = new Sphere(2, 0, -4, 1, new double[] {
     0,
     0,
     255
    }, 500);
    // green
-   Sphere sh3 = new Sphere(-2, 0, 4, 1, new double[] {
+   Sphere sh3 = new Sphere(-2, 0, -4, 1, new double[] {
     0,
     255,
     0
    }, 10);
    List < Sphere > spheres = new List < Sphere > {
     sh1,
-    sh2,
-    sh3
+    //sh2,
+    //sh3
    };
 
    Light light1 = new Light("ambient", 0.2);
    Light light2 = new Light("point", 0.6, new Vec3(2, 1, 0));
-   Light light3 = new Light("directional", 0.2, new Vec3(1, 4, 4));
+   Light light3 = new Light("directional", 0.2, new Vec3(1, 4, -4));
    List < Light > lights = new List < Light > {
     light1,
     light2,
