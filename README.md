@@ -4,3 +4,5 @@
 
 - code
 - open [.ppm](https://github.com/tingwei628/raytracing/blob/master/assets/raytracing.ppm) with `xdg-open` on Linux
+- demo
+<img src="./assets/raytracing.png"  width="30%" height="30%">
